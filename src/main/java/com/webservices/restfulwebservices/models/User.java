@@ -1,6 +1,8 @@
 package com.webservices.restfulwebservices.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -11,7 +13,9 @@ public class User {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
+    @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
+    @Past(message = "Birth Date should be in the past")
     private LocalDate birthDate;
 
     private String email;
